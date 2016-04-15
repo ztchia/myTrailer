@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   devise_scope :user do
     authenticated :user do
-      root :to => 'books#index'
+      root :to => 'devise/registrations#edit'
     end
     unauthenticated :user do
       root :to => 'devise/registrations#new', as: :unauthenticated_root

@@ -1,17 +1,41 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+before_action :set_user, only: [:show]
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+  # def create
+  #   @user = User.new(sign_up_params)
+  #   byebug
+  #   if @user.profile_pic.present?
+  #     Cloudinary::Uploader.upload(params[:profile_pic])
+  #   end
+  # end
+
+  # def update
+  #    if @user.update(account_update_params)
+  #     byebug
+  #      if @user.profile_pic.present?
+  #         Cloudinary::Uploader.upload(params[:profile_pic])
+  #      end
+  #    end
+  # end
+
+
+  
 
   private
 
   def sign_up_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :profile_pic, :email, :password, :password_confirmation)
   end
 
   def account_update_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:username,:profile_pic, :email, :password, :password_confirmation, :current_password)
   end
-end
+
+  def set_user
+    @user = User.find[params[:id]]
+  end
+
 
   # GET /resource/sign_up
   # def new
