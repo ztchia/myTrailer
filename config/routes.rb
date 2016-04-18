@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  
   devise_for :users, controllers: { registrations: "users/registrations" }
+  resources :users, :only => [:show]
   devise_scope :user do
     authenticated :user do
       root :to => 'devise/registrations#edit'
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
     unauthenticated :user do
       root :to => 'devise/registrations#new', as: :unauthenticated_root
     end
+
 end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
