@@ -1,7 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-before_action :set_user, only: [:show]
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+before_filter :sign_up_params, only: [:create]
+before_filter :account_update_params, only: [:update]
   # def create
   #   @user = User.new(sign_up_params)
   #   byebug
@@ -18,10 +17,6 @@ before_action :set_user, only: [:show]
   #      end
   #    end
   # end
-
-
-  
-
   private
 
   def sign_up_params
@@ -31,11 +26,6 @@ before_action :set_user, only: [:show]
   def account_update_params
     params.require(:user).permit(:username,:profile_pic, :email, :password, :password_confirmation, :current_password)
   end
-
-  def set_user
-    @user = User.find[params[:id]]
-  end
-
 
   # GET /resource/sign_up
   # def new
