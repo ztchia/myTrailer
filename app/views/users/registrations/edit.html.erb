@@ -18,6 +18,8 @@
     <%= f.file_field :profile_pic, autofocus: true %>
   </div>
 
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

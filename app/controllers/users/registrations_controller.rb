@@ -1,22 +1,16 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 before_filter :sign_up_params, only: [:create]
 before_filter :account_update_params, only: [:update]
-  # def create
-  #   @user = User.new(sign_up_params)
-  #   byebug
-  #   if @user.profile_pic.present?
-  #     Cloudinary::Uploader.upload(params[:profile_pic])
-  #   end
-  # end
 
-  # def update
-  #    if @user.update(account_update_params)
-  #     byebug
-  #      if @user.profile_pic.present?
-  #         Cloudinary::Uploader.upload(params[:profile_pic])
-  #      end
-  #    end
-  # end
+def create
+  super
+   if params[:profile_pic].present?
+    preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
+    raise "Invalid upload signature" if !preloaded.valid?
+    @user.profile_pic = preloaded.identifier
+end
+  
+end
   private
 
   def sign_up_params
