@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  get 'welcome/index'
+  devise_for :users, :controllers => { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks"}
   resources :users, :only => [:show]
   devise_scope :user do
     authenticated :user do
       root :to => 'users#show'
     end
     unauthenticated :user do
-      root :to => 'devise/registrations#new', as: :unauthenticated_root
+      root :to => 'welcome#index', as: :unauthenticated_root
     end
   end
-
+# devise/registrations#new
   resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

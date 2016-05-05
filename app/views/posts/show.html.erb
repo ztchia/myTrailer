@@ -1,27 +1,36 @@
-<h1> <%= @post.title %> by <%= @post.user.username %> </h1>
+<div class="container-fluid">
+	<h1> <%= @post.title %> by <%= @post.user.username %> </h1>
 	
-	<% if @post.image.present? %>
-  		<%= cl_image_tag( @post.image, :width => 300, :height => 300, :crop => "scale", :secure => true ) %></br>
-  	<% end %>
+		<% if @post.image.present? %>
+    <div class="center">
+  			<%= cl_image_tag( @post.image, :width => 300, :height => 300, :crop => "scale", :secure => true ) %></br>
+        </div> </br>
+  		<% end %>
 
-  	<% if @post.video.present? %>
+  		<% if @post.video.present? %>
+      <div class="center">
   			<%= video_tag(@post.video.to_s, controls: true, autobuffer: true)  %> </br> 
-  	<% end %>
+        </div> </br>
+  		<% end %>
 
-  	<% if @post.song.present? %>
+  		<% if @post.song.present? %>
+      <div class="center">
+  		  <audio controls>
+  				Song: <source src =<%= @post.song.to_s %> type="audio/mpeg">
+ 		 	  </audio> </br>
+      </div>
 
-  		 <audio controls>
-  			Song: <source src =<%= @post.song.to_s %> type="audio/mpeg">
- 		 </audio> </br>
+ 		<% end %>
 
- 	<% end %>
+ 		<%= @post.content %> </br>
 
- 	<%= @post.content %> </br>
- 	  <% if !current_user.nil? %>
+ 	  	<% if !current_user.nil? %>
  		  <% if @post.user.id == current_user.id %>
  			   <button type="button" class="btn btn-default"> <font color="white"> <%= link_to "Edit", edit_post_path(@post) %> </font> </button>
  			   
- 			   <button type="button" class="btn btn-danger"> <%= link_to 'Delete', post_path(@post), method: :delete,  data: { confirm: 'Are you sure?' } %> </button>
+ 			   <button type="button" class="btn btn-default"> <%= link_to 'Delete', post_path(@post), method: :delete,  data: { confirm: 'Are you sure?' } %> </button>
  		  <% end %>
  	  <% end %>
+ 	  <%= render 'disqus' %>
+ </div>
 

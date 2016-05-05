@@ -35,8 +35,9 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
 	end
 
 	def destroy
-		@post.delete!
-		redirect_to "/"
+		if @post.destroy
+			redirect_to "/"
+		end
 	end
 
 private

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
  <link href='css/main.css' rel='stylesheet'>
+ <link href="css/bootstrap.min.css" rel="stylesheet">
 <head>
   <title>MyTrailer</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -18,7 +18,7 @@
        <div class = "container-fluid"> 
         <div class="navbar-header">
           <a href="#" class="navbar-brand">
-              Signed in as <%= current_user.email %> 
+              Signed in as <%= current_user.username %> 
            </a>
 
               <button class ="navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
@@ -40,7 +40,7 @@
    <nav class="navbar navbar-inverse navbar-static-top"> 
        <div class = "container-fluid"> 
         <div class="navbar-header">
-          <a href="#" class="navbar-brand">
+          <a href="/" class="navbar-brand">
               MyTrailer 
            </a>
 
@@ -54,12 +54,22 @@
             <ul class = "nav navbar-nav navbar-right">
                <li> <%= link_to "Sign up", new_user_registration_path %>  </li>
                <li> <%= link_to "Login", new_user_session_path %></li>  
+               <li> <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)%> </li>
             </ul>
         </div>
      </div>
-   </nav>
+    </nav>
   <% end %>
 <%= yield %>
 
-</body>
+</body> 
 </html>
+
+ <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
