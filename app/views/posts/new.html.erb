@@ -1,0 +1,46 @@
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div class="container-fluid">
+<h1> New Post </h1>
+
+	<%= bootstrap_form_for(@post) do |f| %>
+ <section id="intro" class="intro-section">
+  		<%= f.label :title %> </br>
+  		<%= f.text_field_without_bootstrap :title %> </br>
+  		Content: </br>	
+  		<%= f.text_area_without_bootstrap :content %>
+</section>
+
+    <p1> I would like to post a: </p1>
+  		<button type="button" class="btn btn-customized"> 
+        <a class="page-scroll" href="#about">Image</a> </button>
+       	<button type="button" class="btn btn-customized"> 
+        <a class="page-scroll" href="#services">Video</a> </button>
+       	<button type="button" class="btn btn-customized"> 
+        <a class="page-scroll" href="#contact">Song</a> </button>
+
+    <section id="about" class="about-section">
+  		<%= f.file_field :image %>
+  	</section>
+  	<section id="services" class="services-section">
+  		<%= f.file_field :video %>
+  	</section>
+  	<section id="contact" class="contact-section">
+  		<%= f.file_field :song %> 
+  	</section>
+  		<%= f.submit %>
+	<% end %>
+	</section>
+
+</div> 
+</body>
+<script>
+	$(function() {
+    	$('a.page-scroll').bind('click', function(event) {
+        	var $anchor = $(this);
+       	 $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+       	 }, 1500, 'easeInOutExpo');
+       	 event.preventDefault();
+   		 });
+	});
+</script>

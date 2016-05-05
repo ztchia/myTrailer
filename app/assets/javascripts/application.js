@@ -10,7 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require cloudinary
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require disqus_rails
 //= require_tree .
+

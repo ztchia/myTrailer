@@ -1,4 +1,10 @@
-<%= cl_image_tag( @user.profile_pic, :alt => "Profile Picture") %></br>
+<div class = "center">
+	<lead> <strong> <h1> Welcome! <%= @user.username %> </h1> </strong> </lead>  <br>
+	<%= cl_image_tag( @user.profile_pic, :alt => "Profile Picture", :width => 300, :height => 300, :crop => "scale", :secure => true ) %> </br> </br>
+	
+	Name : <%= @user.username %></br>
+	Email: <%= @user.email %></br> </br>
 
-Name : <%= @user.username %></br>
-Email: <%= @user.email %></br>
+	<button type="button" class"btn btn-sucess"> <%= link_to "Create Post", new_post_path %> </button>
+
+</div>
